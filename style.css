@@ -1,0 +1,282 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1f2937, #0f172a);
+    color: #ffffff;
+    font-family: "Poppins", sans-serif;
+    text-align: center;
+    overflow: hidden;
+}
+
+
+/* =========================
+   MAIN
+========================= */
+
+main {
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+}
+
+.subtitle {
+    color: #94a3b8;
+    font-size: 0.85rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+
+h1 {
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+
+/* =========================
+   GAME BOARD
+========================= */
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+}
+
+.game {
+    width: min(90vw, 420px);
+    aspect-ratio: 1 / 1;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+
+    padding: 12px;
+
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    border-radius: 24px;
+
+    box-shadow:
+        0 25px 50px rgba(0, 0, 0, 0.35),
+        inset 0 1px 1px rgba(255, 255, 255, 0.05);
+
+    backdrop-filter: blur(10px);
+}
+
+
+/* =========================
+   BOXES
+========================= */
+
+.box {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+
+    border: none;
+    border-radius: 16px;
+
+    background: #f8fafc;
+
+    font-family: "Poppins", sans-serif;
+    font-size: clamp(2.5rem, 10vw, 4.5rem);
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.15s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.box:hover:not(:disabled) {
+    transform: translateY(-3px);
+    background: #ffffff;
+
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.box:active:not(:disabled) {
+    transform: scale(0.95);
+}
+
+.box:disabled {
+    cursor: default;
+}
+
+
+/* =========================
+   PLAYER COLORS
+========================= */
+
+.box.O {
+    color: #06b6d4;
+}
+
+.box.X {
+    color: #f43f5e;
+}
+
+
+/* =========================
+   RESET BUTTON
+========================= */
+
+#reset-btn,
+#new-btn {
+    border: none;
+    border-radius: 12px;
+
+    padding: 12px 24px;
+
+    background: #ffffff;
+    color: #0f172a;
+
+    font-family: "Poppins", sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+#reset-btn:hover,
+#new-btn:hover {
+    transform: translateY(-2px);
+    background: #e2e8f0;
+
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+#reset-btn:active,
+#new-btn:active {
+    transform: scale(0.96);
+}
+
+
+/* =========================
+   RESULT SCREEN
+========================= */
+
+.msg-container {
+    position: fixed;
+    inset: 0;
+
+    z-index: 10;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(8px);
+
+    padding: 20px;
+}
+
+.result-card {
+    width: min(90vw, 420px);
+
+    padding: 40px 25px;
+
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+
+    border-radius: 24px;
+
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+
+    animation: popup 0.3s ease;
+}
+
+.result-icon {
+    font-size: 3rem;
+    margin-bottom: 15px;
+}
+
+#msg {
+    color: #ffffff;
+
+    font-size: clamp(1.5rem, 5vw, 2.2rem);
+    font-weight: 600;
+
+    margin-bottom: 25px;
+}
+
+
+/* =========================
+   HIDE
+========================= */
+
+.hide {
+    display: none;
+}
+
+
+/* =========================
+   ANIMATION
+========================= */
+
+@keyframes popup {
+    from {
+        opacity: 0;
+        transform: scale(0.85);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 500px) {
+
+    main {
+        padding: 10px;
+    }
+
+    .container {
+        padding: 15px 0;
+    }
+
+    .game {
+        width: min(90vw, 350px);
+        gap: 8px;
+        padding: 8px;
+        border-radius: 18px;
+    }
+
+    .box {
+        border-radius: 12px;
+    }
+
+    #reset-btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+}
+
